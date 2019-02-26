@@ -4,7 +4,6 @@ import time
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.common.exceptions import WebDriverException
 from selenium import webdriver
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.common.keys import Keys
 
 MAX_WAIT = 10
@@ -15,10 +14,16 @@ class NewVisitorTest(StaticLiveServerTestCase):
     host = socket.gethostbyname(socket.gethostname())
 
     def setUp(self):
-        selenium_hub_url = 'http://hub:4444/wd/hub'
+        selenium_hub_url = 'http://selenoid:4444/wd/hub'
+        capabilities = {
+            "browserName": "chrome",
+            "version": "57.0",
+            "enableVNC": True,
+            "enableVideo": False
+        }
         self.browser = webdriver.Remote(
             command_executor=selenium_hub_url,
-            desired_capabilities=DesiredCapabilities.CHROME)
+            desired_capabilities=capabilities)
 
     def tearDown(self):
         self.browser.quit()

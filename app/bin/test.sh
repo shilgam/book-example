@@ -2,9 +2,8 @@
 set -e
 
 # Wait for services to be started
-dockerize -wait http://hub:4444 \
-          -wait http://chrome-debug:5555 \
-          -wait http://firefox:5555 \
+dockerize -wait http://selenoid:4444/ping \
+          -wait http://selenoid-ui:8080 \
           -timeout 20s
 
 exec "$@"
