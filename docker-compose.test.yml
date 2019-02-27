@@ -17,7 +17,7 @@ services:
       - selenoid
       - selenoid-ui
     environment:
-      DJANGO_TEST_PROCESSES: 12
+      DJANGO_TEST_PROCESSES: 16
     entrypoint: ["./bin/test.sh"]
     command: python ./manage.py test functional_tests --parallel
     networks:
@@ -32,7 +32,7 @@ services:
       - "$PWD:/opt/selenoid/logs"
     environment:
       - OVERRIDE_VIDEO_OUTPUT_DIR=$PWD
-    command: ["-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/logs", "-container-network", "selenoid-test", "-session-attempt-timeout", "30s", "-retry-count", "3", "-limit", "12"]
+    command: ["-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/logs", "-container-network", "selenoid-test", "-session-attempt-timeout", "30s", "-retry-count", "3", "-limit", "16"]
     ports:
       - "4444:4444"
     networks:
