@@ -12,7 +12,7 @@ jobs:
     - name: "Func Tests"
       script:
         - |
-          docker pull selenoid/vnc:chrome_57.0
+          docker pull selenoid/chrome:72.0
           docker-compose --file docker-compose.test.yml build
           docker network create --attachable=true --driver=bridge selenoid-test
           docker network ls
