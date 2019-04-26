@@ -53,6 +53,9 @@ Deploy Staging:
   variables:
     HEROKU_APP_NAME: minimylist-staging
     HEROKU_LOGIN: _
+  environment:
+    name: minimylist-staging
+    url: http://minimylist-staging.herokuapp.com
   script:
     # Note: `echo $HEROKU_API_KEY` reveals the secret key!
 
