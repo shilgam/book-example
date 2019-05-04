@@ -1,0 +1,18 @@
+version: '3'
+services:
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - "./integration-tests:/integration-tests"
+      - "./screenshots:/screenshots"
+      # - "./src:/app/src"
+    # command: "wait-for-it.sh web:80 -- mocha --recursive /integration-tests"
+    command: "mocha --recursive /integration-tests"
+    # links:
+    #   - web
+  # web:
+  #   image: tutum/hello-world
+  #   expose:
+  #     - "80"
